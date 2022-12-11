@@ -18,10 +18,11 @@ const Input = () => {
         maquina: e.target.value
       }
     })
+
     if (e.target.value.length === 17 || e.target.value.length === 35) {
       setMaquinaStyle("bg-green-500");
     } else {
-      setMaquinaStyle("");
+      setMaquinaStyle("bg-red-500");
     }
   }
 
@@ -42,7 +43,7 @@ const Input = () => {
           ? <InputsNoblex />
           : maquina.length === 35
             ? <InputsAsus />
-            : <p>Ingrese un serie válido</p>
+            : <p className="text-red-500 font-medium mt-1">Ingrese un serie válido</p>
       }
     </>
   )
