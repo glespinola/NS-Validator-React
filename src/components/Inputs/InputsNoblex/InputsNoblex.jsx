@@ -1,14 +1,15 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { EquipoContext } from '../../../context/EquipoContext'
+import { validacionEquipo } from '../../../utilities/validacionEquipo.utility'
 
 const InputsNoblex = () => {
     const [manual, setManual] = useState("")
     const { equipo, dispatch } = useContext(EquipoContext);
     const [manualStyle, setManualStyle] = useState("");
+    const { maquina } = equipo;
 
     const handleManualChange = (e) => {
         setManual(e.target.value)
-        const { maquina } = equipo;
         dispatch({
             type: "ADD",
             payload: {
@@ -27,6 +28,26 @@ const InputsNoblex = () => {
             setManualStyle("bg-red-500");
         }
     }
+
+    useEffect(() => {
+        if (manual.length === maquina.length) {
+            if (manual === maquina) {
+                console.log("son iguales")
+                validacionEquipo("ok")
+                setTimeout(() => {
+                    dispatch({
+                        type: "REMOVE-ALL",
+                        payload: {}
+                    })
+                }, 2000);
+            } else {
+                console.log("nope")
+                validacionEquipo("fail")
+            }
+        }
+
+    }, [manual])
+
 
     return (
         <>

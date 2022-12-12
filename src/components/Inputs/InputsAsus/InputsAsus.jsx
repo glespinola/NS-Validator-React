@@ -24,7 +24,7 @@ const InputsAsus = () => {
         console.log(inputs.manual)
         console.log(inputs.frente)
         console.log(inputs.dorso)
-    }, [inputs])
+    }, [inputs.manual])
 
 
 
